@@ -1,0 +1,31 @@
+web:
+  links:
+    - php
+  build: ./dockerfiles/nginx
+  ports:
+    - "80:80"
+
+php:
+  links:
+    - db
+  expose:
+    - 9000
+  build: ./dockerfiles/php
+  volumes:
+    - ./media:/music
+  ports:
+    - "8000:8000"
+
+db:
+  image: mariadb:10.0
+  environment:
+    - "MYSQL_ROOT_PASSWORD=root"
+    - "MYSQL_USER=koel"
+    - "MYSQL_PASSWORD=koel"
+    - "MYSQL_DATABASE=koel"
+  expose:
+    - 3306
+  ports:
+    - "3306:3306"
+  volumes:
+    - "/opt/koel/mysql:/var/lib/mysql/data"
