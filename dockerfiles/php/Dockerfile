@@ -9,21 +9,28 @@ RUN apt-get update \
     && apt-get clean \
     && rm -rf /var/lib/apt/lists/* /tmp/* /var/tmp/*
 
-WORKDIR /
+#RUN groupadd -r koel -g 1000 \
+#    && useradd -u 1000 -r -g koel -d /app -s /sbin/nologin -c "Docker image user" koel\ 
+#    && mkdir -p /app \
+#    && chown -R koel:koel /app
 
-COPY .env .env
 
-RUN git clone https://github.com/phanan/koel \
-    && cd koel \
-	&& git fetch --all \
-	&& git checkout v1.1.2
+WORKDIR /app
 
-WORKDIR /koel
-COPY .env .env
+RUN npm install -g npm@latest
+RUN npm install -g npm-install-missing gulp bower
 
-ENV NODE_ENV production
-RUN npm install 
+#USER koel
+
+RUN git clone https://github.com/phanan/koel 
+
+WORKDIR /app/koel
+
+RUN git fetch --all \
+    && git checkout v1.1.2 
+
 RUN composer install
-
-VOLUME /koel
+COPY .env .env
+#USER root
+VOLUME /app/koel
 CMD ["php-fpm","-F"]
