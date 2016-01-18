@@ -2,8 +2,10 @@ web:
   links:
     - php
   build: ./dockerfiles/nginx
+  volumes_from:
+    - php
   ports:
-    - "80:80"
+    - "8080:80"
 
 php:
   links:
@@ -25,7 +27,5 @@ db:
     - "MYSQL_DATABASE=koel"
   expose:
     - 3306
-  ports:
-    - "3306:3306"
   volumes:
     - "/opt/koel/mysql:/var/lib/mysql/data"

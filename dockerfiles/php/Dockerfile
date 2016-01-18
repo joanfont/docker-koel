@@ -25,7 +25,7 @@ RUN npm install
 
 COPY .env .env
 
-USER root
-ADD entrypoint.sh /
+VOLUME /app/koel
 
+USER root
 CMD ["php-fpm","-F"]
