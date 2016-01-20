@@ -5,7 +5,7 @@ web:
   volumes_from:
     - php
   ports:
-    - "8081:80"
+    - "8000:80"
 
 php:
   links:
@@ -15,8 +15,6 @@ php:
   build: ./dockerfiles/php
   volumes:
     - ./media:/music
-  ports:
-    - "8000:8000"
 
 db:
   image: mariadb:10.0
