@@ -4,7 +4,7 @@ RUN rm -f /etc/nginx/sites-available/*
 RUN rm -f /etc/nginx/sites-enabled/*
 
 ADD nginx.conf /etc/nginx/nginx.conf
-ADD default.conf /etc/nginx/sites-available/
+ADD default.conf /etc/nginx/sites-enabled/
 
 ADD entrypoint.sh /
 

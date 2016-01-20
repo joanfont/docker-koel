@@ -30,5 +30,7 @@ RUN rm -fr node_modules
 RUN npm install
 RUN bower install --allow-root
 RUN gulp --production
-VOLUME /app/koel
+
+VOLUME ["/app/koel"]
+
 CMD ["php-fpm","-F"]

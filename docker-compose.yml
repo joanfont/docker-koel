@@ -28,4 +28,4 @@ db:
   expose:
     - 3306
   volumes:
-    - "/opt/koel/mysql:/var/lib/mysql/data"
+    - "/opt/koel/mysql:/var/lib/mysql/"
