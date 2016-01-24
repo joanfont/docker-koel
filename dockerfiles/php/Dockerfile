@@ -1,4 +1,5 @@
 FROM library/php:7.0.2-fpm
+MAINTAINER Joan Font joanfont@gmail.com
 
 RUN apt-get update \
     && apt-get -y -q install git curl zlib1g-dev build-essential\
@@ -14,12 +15,12 @@ WORKDIR /app
 RUN npm install -g npm@latest
 RUN npm install -g npm-install-missing gulp bower
 
-RUN git clone https://github.com/phanan/koel 
+RUN git clone https://github.com/phanan/koel
 
 WORKDIR /app/koel
 
 RUN git fetch --all \
-    && git checkout v1.1.2 
+    && git checkout v1.1.2
 
 RUN composer install
 COPY .env .env

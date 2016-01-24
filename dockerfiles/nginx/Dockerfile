@@ -1,4 +1,5 @@
 FROM nginx:1.9
+MAINTAINER Joan Font joanfont@gmail.com
 
 RUN rm -f /etc/nginx/sites-available/*
 RUN rm -f /etc/nginx/sites-enabled/*
