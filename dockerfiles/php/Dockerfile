@@ -1,6 +1,8 @@
 FROM library/php:7.0.2-fpm
 MAINTAINER Joan Font joanfont@gmail.com
 
+ENV KOEL_VERSION v2.2.0
+
 RUN apt-get update \
     && apt-get -y -q install git curl zlib1g-dev build-essential\
     && docker-php-ext-install pdo_mysql mbstring zip\
@@ -20,7 +22,7 @@ RUN git clone https://github.com/phanan/koel
 WORKDIR /app/koel
 
 RUN git fetch --all \
-    && git checkout v1.1.2
+    && git checkout $KOEL_VERSION
 
 RUN composer install
 COPY .env .env
